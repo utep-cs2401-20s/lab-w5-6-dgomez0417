@@ -1,4 +1,5 @@
 public class SnakeGame {
+
     private boolean[][] game;
     private int[] headPosition;
     private static int exhaustiveChecks;
@@ -20,11 +21,17 @@ public class SnakeGame {
     }
 
     public int[] findTailExhaustive() {
-        int check = 0;
-            for(int i = 0; i < game.length; i++){ // start at 0,0 and check if is part of the snake
-                for (int j = 1; j < game.length; j++) {
-                    if(game[i][j] = false){
-                        check ++;
+        resetCounters();
+        int length = 0;
+        for(int i = 0; i < game.length; i++){ // start at 0,0 and check if is part of the snake
+            for (int j = 0; j < game.length; j++) {
+                if(game[i][j] == true){ // if part of snake
+                    // call recursive method;
+                    if(){
+                        if(){
+
+                        }
+                    }
                 }
             }
         }
@@ -39,8 +46,26 @@ public class SnakeGame {
         // when done
         //return tail(x,y);
     }
+    // find tail recursive
+    //
+    public int[] findTailRecursive(){
+        resetCounters();
+
+    }
+    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+
+    }
+
+    private void resetCounters(){
+        exhaustiveChecks = 0;
+        recursiveChecks = 0;
+    }
+    private static int getRecursiveChecks(){
+
+    }
+    private static int getExhaustiveChecks(){
+
+    }
 }
 
 //find tail looks at every single cell to find the tail
-
-}

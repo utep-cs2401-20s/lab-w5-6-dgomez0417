@@ -30,7 +30,7 @@ public class SnakeGame {
             for (int j = 0; j < game[i].length; j++) {
                 if(game[i][j] = true) { // checks if the cell is part of the snake
                     length++;
-                    if(i+1 <= game.length && i-1 > -1 && j+1 <= game.length && j-1 > -1 ){ // make sure that the if statement below will not go out of bounds
+                    if(i + 1 <= game.length && i - 1 > -1 && j + 1 <= game.length && j - 1 > -1 ){ // make sure that the if statement below will not go out of bounds
                         if (game[i + 1][j]) { // checking the cells around the true cell
                             n++;
                         }
@@ -43,7 +43,7 @@ public class SnakeGame {
                         if (game[i][j - 1]) {
                             n++;
                         }
-                        length += n; // adding the neighbors to length
+                        length += n; // adding the neighbor to the length
 
                         if (i != headPosition[0] && j != headPosition[1] && n == 1) { // checking if the true cell found is the tail
                             arr[0] = i; // storing tail position into returned array
@@ -67,8 +67,27 @@ public class SnakeGame {
         resetCounters(); // resting the counter
         return findTailRecursive(headPosition, headPosition); // returning what the private
     }
-    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition) {
+        resetCounters(); // resetting the counter
+        int length = 0; // to store the length of the snake
+        int[] arr = new int[3]; // array that will be returned
 
+        if (currentPosition[0] + 1 <= game.length && currentPosition[0] - 1 > -1 && currentPosition[1] + 1 <= game.length && currentPosition[1] - 1 > -1) { // check that we have not gone of the board
+            if (currentPosition == previousPosition) { // making sure that we keep going forward and how backwards
+                arr[0] = currentPosition[0]; // putting tail position into the new array
+                arr[1] = previousPosition[1];
+            }
+            if (currentPosition[0] + 1 < game.length && game[currentPosition[0] + 1][currentPosition[1]]) { //
+                previousPosition[0] = currentPosition[0] + 1;
+                previousPosition[1] = currentPosition[1];
+                length++;
+                return findTailRecursive(currentPosition, previousPosition); // recursive call: calling the method again
+            } else {
+                recursiveChecks++;
+            }
+        }
+        arr[2] = length;
+        return arr;
     }
 
     private void resetCounters(){
